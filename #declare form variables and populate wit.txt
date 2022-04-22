@@ -1,0 +1,29 @@
+#declare form variables and populate with filler data
+data_field="description"
+data_field.element = "ql-editor ql-blank"
+department="null"
+department.element="NrSelect-2"
+email="test@test.com"
+email.element="nr_form_input-3"
+name="Fake Name"
+name.element = "nr_form_input-4"
+phone= "111-111-1111"
+phone.element="nr_form_input-5"
+address="111 Home st."
+address.element="nr_form_input-6"
+city= "Eureka"
+city.element="nr_form_input-7"
+state= "CA"
+state.element="nr_form_select-8"
+zip="11111"
+zip.element="nr_form_input-9"
+company= "THC"
+company.element="nr_form_input-10"
+button_element="nr-button_label"
+button_xpath="/html/body/div[2]/main/section/div/div[1]/form/div[3]/button/span"
+
+
+#save info as csv file
+database = pd.DataFrame(dict(data_field=data_field, department=department, email = email, name=name, phone=phone, address=address, city=city, state=state, zip=zip, company=company))
+database.to_csv("submission_form_database.csv", index=False)
+database.head()
