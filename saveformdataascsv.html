@@ -42,14 +42,14 @@ const zip = document.getElementById('zip');
 const company = document.getElementById('company');
 
 let data = 
-	'description,' + description.value + ',' +
-	'department,' + department.value + ',' +
-	'email,' + email.value + ',' +
-	'phone,' + phone.value + ',' +
-	'address,' + address.value + ',' +
-	'city,' + city.value + ',' +
-	'zip,' + zip.value + ',' +
-	'company,' + company.value + ',';
+	'@THC@description,' + description.value + ',' +
+	'@THC@department,' + department.value + ',' +
+	'@THC@email,' + email.value + ',' +
+	'@THC@phone,' + phone.value + ',' +
+	'@THC@address,' + address.value + ',' +
+	'@THC@city,' + city.value + ',' +
+	'@THC@zip,' + zip.value + ',' +
+	'@THC@company,' + company.value + ',';
 	
 	 const textToBLOB = new Blob([data], { type: 'text/plain' });
         const sFileName = 'formData.csv';
