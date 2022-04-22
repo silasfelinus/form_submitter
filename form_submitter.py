@@ -1,3 +1,15 @@
+#Indebted thanks for guidance from: 
+#https://towardsdatascience.com/automating-submission-forms-with-python-94459353b03e
+
+#Form Submitter
+#Reads a csv, populates data into a web form, and submits data
+
+#Currently configured for humboldtgov but could be modified for other
+#sites with minimal change
+
+
+#Load python libraries (this has not been optimized for the current code, 
+#Hence, some libraries are likely unnecessary)
 from selenium import webdriver
 import pandas as pd
 import time
@@ -11,45 +23,16 @@ import numpy as np
 import pandas as pd
 
 
-#declare form variables and populate with filler data
-data_field="description"
-data_field.element = "ql-editor ql-blank"
-department="null"
-department.element="NrSelect-2"
-email="test@test.com"
-email.element="nr_form_input-3"
-name="Fake Name"
-name.element = "nr_form_input-4"
-phone= "111-111-1111"
-phone.element="nr_form_input-5"
-address="111 Home st."
-address.element="nr_form_input-6"
-city= "Eureka"
-city.element="nr_form_input-7"
-state= "CA"
-state.element="nr_form_select-8"
-zip="11111"
-zip.element="nr_form_input-9"
-company= "THC"
-company.element="nr_form_input-10"
-button_element="nr-button_label"
-button_xpath="/html/body/div[2]/main/section/div/div[1]/form/div[3]/button/span"
-
-
-#save info as csv file
-database = pd.DataFrame(dict(data_field=data_field, department=department, email = email, name=name, phone=phone, address=address, city=city, state=state, zip=zip, company=company))
-database.to_csv("submission_form_database.csv", index=False)
-database.head()
-
-url = "https://humboldtgov.nextrequest.com/requests/new"
-driver = webdriver.Chrome(executable_path="./chromedriver")
-
-
+#Send the keys to the webform
+#Variables configured for current humboldtgov site
 def answerForm(driver, df, element_class, user_id):
+
+    
+    #Modify here for a different site or if form changes
     data_field= df["data_field"][user_id]
     department= df["department"][user_id]
     email= df["email"][user_id]
-    name = df["name"][user_id]
+    name = df["your_name"][user_id] #"name" on humboldtgov, "your_name" on test form
     phone=df["phone"][user_id]
     address=df["address"][user_id]
     city= df["city"][user_id]
@@ -64,3 +47,29 @@ def answerForm(driver, df, element_class, user_id):
         q.send_keys(a)
     
     return driver
+
+#Click the submit button 
+def click_submit(driver, element_class):
+    driver.find_element_by_xpath(element_class).click()
+    return driver
+
+
+
+#Load variables for humboldtgov and get website
+url = "https://humboldtgov.nextrequest.com/requests/new"  # Change this to fill out a different form
+driver = webdriver.Chrome(executable_path="./chromedriver")
+driver.get(url)
+
+
+df = pd.read_csv("./submission_form_database.csv")
+text_question_element_class = ""
+checkbox_question_element_class = ""
+submit_element_class = ''
+
+for user_id in range(len(df)):
+    driver.get(url)
+    
+    driver.maximize_window()
+    driver = answerNameAge(driver, df, text_question_element_class, user_id)
+    driver = answerCheckBox(driver, df, checkbox_question_element_class, user_id)
+    driver = submit(driver, submit_element_class)
