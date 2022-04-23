@@ -2,14 +2,11 @@
 #https://towardsdatascience.com/automating-submission-forms-with-python-94459353b03e
 
 #Form Submitter
+#THC Humboldt
 #Reads a csv, populates data into a web form, and submits data
 
-#Currently configured for humboldtgov but could be modified for other
-#sites with minimal change
-
-
-#Load python libraries (this has not been optimized for the current code, 
-#Hence, some libraries are likely unnecessary)
+#Load python libraries
+import requests
 from selenium import webdriver
 import pandas as pd
 import time
@@ -20,7 +17,20 @@ import glob
 import sys
 sys.path.append(".")
 import numpy as np
-import pandas as pd
+
+#Read CSV
+
+#parse data
+
+#populate webform
+
+
+#Click the Submit Button 
+def click_submit(driver, element_class):
+    driver.find_element_by_xpath(element_class).click()
+    return driver
+
+#Run Program
 
 
 #Send the keys to the webform
@@ -48,10 +58,7 @@ def answerForm(driver, df, element_class, user_id):
     
     return driver
 
-#Click the submit button 
-def click_submit(driver, element_class):
-    driver.find_element_by_xpath(element_class).click()
-    return driver
+
 
 
 
@@ -61,7 +68,7 @@ driver = webdriver.Chrome(executable_path="./chromedriver")
 driver.get(url)
 
 
-df = pd.read_csv("./submission_form_database.csv")
+df = pd.read_csv("./formData.csv")
 text_question_element_class = ""
 checkbox_question_element_class = ""
 submit_element_class = ''
