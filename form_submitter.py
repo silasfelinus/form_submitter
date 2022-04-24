@@ -1,12 +1,8 @@
-#Indebted thanks for guidance from: 
-#https://towardsdatascience.com/automating-submission-forms-with-python-94459353b03e
-
 #Form Submitter
 #THC Humboldt
 #Reads a csv, populates data into a web form, and submits data
 
 #Load python libraries
-import requests
 from selenium import webdriver
 import pandas as pd
 import time
