@@ -1,11 +1,3 @@
-<h1>Form_submitter</h1>
-<h2>Submits Web Forms using Python<h2>
-
-<p>Thanks to https://towardsdatascience.com/automating-submission-forms-with-python-94459353b03e for guidance as I remembered how to python.<p>
-
-
-
-Workspace:
 Form Submitter
 #THC Humboldt
 #Reads a csv, populates data into a web form, and submits data
@@ -61,6 +53,8 @@ def answerForm(driver, df, element_class, user_id):
         q.send_keys(a)
     
     return driver
+
+
 
 
 
