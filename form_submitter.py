@@ -4,6 +4,7 @@
 
 #Load python libraries
 from selenium import webdriver
+import chromedriver_binary 
 import time
 import json
 from datetime import datetime
@@ -14,7 +15,7 @@ sys.path.append(".")
 import numpy as np
 import csv
 sys.path.append("./plugins")
-
+ 
 intro = "This request is being made by the Transparent Humboldt Coalition, a co-operative organization of citizens dedicated to anti-corruption activism through radical transparency.\nWe are passing along the following request:"
 polite_sendoff="Thank you for your assistance in expediting this request. You efficient cooperation is heavily supported by law and helps make a cleaner, less corrupt world."
 request = ""
@@ -44,10 +45,8 @@ final_request = "Attn: " + department + "\n" + intro + "\n" + request + "\n" + p
 
 #populate webform
 url = "https://fakeform.acrocatranch.com"
-ChromeOptions options = new ChromeOptions();
-options.addExtensions(new File("/chromedriver/chromedriver.exe"));
-ChromeDriver driver = new ChromeDriver(options);
-
+browser = webdriver.Chrome()
+driver.get(url)
 
 
 #Click the Submit Button 
