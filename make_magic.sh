@@ -1,0 +1,1 @@
+source python3/bin/activate && python form_submitter.py

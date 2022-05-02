@@ -3,9 +3,17 @@
 #Reads a csv, populates data into a web form, and submits data
 
 #Load python libraries
-import csv
-import time
 from selenium import webdriver
+import time
+import json
+from datetime import datetime
+import pathlib
+import glob
+import sys
+sys.path.append(".")
+import numpy as np
+import csv
+sys.path.append("./plugins")
 
 intro = "This request is being made by the Transparent Humboldt Coalition, a co-operative organization of citizens dedicated to anti-corruption activism through radical transparency.\nWe are passing along the following request:"
 polite_sendoff="Thank you for your assistance in expediting this request. You efficient cooperation is heavily supported by law and helps make a cleaner, less corrupt world."
@@ -28,13 +36,16 @@ with open('formData.csv') as csvfile:
     department = row[1]
 
 #Stitch together request
-final_request = "Attn: " + department: + "\n" + intro + "\n" + request + "\n" + polite_sendoff
+final_request = "Attn: " + department + "\n" + intro + "\n" + request + "\n" + polite_sendoff
+
+
 
 
 
 #populate webform
 url = "https://fakeform.acrocatranch.com"
 driver = webdriver.Chrome(executable_path="./chromedriver")
+
 
 
 #Click the Submit Button 
