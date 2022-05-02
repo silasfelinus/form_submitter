@@ -1,0 +1,70 @@
+<html>
+    <script>
+        let saveFile = () => {
+            var description = document.getElementById('request');
+            var department = document.getElementById('department');
+            var departmentIndex = department.selectedIndex;
+        
+            csvContent = "data:text/csv;charset=utf-8," + "|request|,|department|\n|" +
+                description.value + '|,|' + department.options[departmentIndex].value + "|";
+        
+            var encodedUri = encodeURI(csvContent);
+            var link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "formData.csv");
+            document.body.appendChild(link); // Required for FF
+        
+            link.click(); // This will download the data file named "formData.csv".
+        }
+    </script>
+
+
+<body>
+<label for="description">I wanna the government to tell me more about:</label>
+<input type="textarea" name="request" id="request"rows="4" cols="50"><br>
+
+<div>
+<label for="department">Choose a department:</label>
+<select id="department" name="department">
+  <option value="none" selected='selected'>(Optional)</option>
+  <option value="Agricultural Commissioner">Agricultural Commissioner</option>
+  <option value="Assessor's Office">Assessor's Office</option>
+  <option value="Auditor-Controller">Auditor-Controller</option>
+  <option value="Aviation">Aviation</option>
+  <option value="Board of Supervisors">Board of Supervisors</option>
+  <option value="Child Support Services">Child Support Services</option>
+  <option value="Clerk of the Board">Clerk of the Board</option>
+  <option value="Clerk-Recorder">Clerk-Recorder</option>
+  <option value="County Administrative Office">County Administrative Office</option>
+  <option value="Department of Health & Human Services">Department of Health & Human Services</option>
+  <option value="DHHS - Mental Health">DHHS - Mental Health</option>
+  <option value="DHHS - Public Health">DHHS - Public Healthr</option>
+  <option value="DHHS - Social Services">DHHS - Social Services</option>
+  <option value="Elections">Elections</option>
+  <option value="Registrar of Voters">Registrar of Voters</option>
+  <option value="Human Resources">Human Resources</option>
+  <option value="Library">Library</option>
+  <option value="Planning & Building">Planning & Building</option>
+  <option value="Probation Department">Probation Department</option>
+  <option value="Public Defender">Public Defender</option>
+  <option value="Public Works">Public Works</option>
+  <option value="Sherriff's Office">Sherriff's Office</option>
+  <option value="Treasurer-Tax Collector">Treasurer-Tax Collector</option>
+  <option value="UC Cooperative Extension">UC Cooperative Extension</option>
+  </select>
+
+</div>
+
+  <button onclick="saveFile();">Submit Request</button>
+
+  <div>
+  <iframe id="webform" src="https://fakeform.acrocatranch.com" title="Fake Form"></iframe>
+  
+</div>
+
+
+
+</body>
+
+
+</html>
