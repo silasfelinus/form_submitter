@@ -44,7 +44,9 @@ final_request = "Attn: " + department + "\n" + intro + "\n" + request + "\n" + p
 
 #populate webform
 url = "https://fakeform.acrocatranch.com"
-driver = webdriver.Chrome(executable_path="./chromedriver")
+ChromeOptions options = new ChromeOptions();
+options.addExtensions(new File("/chromedriver/chromedriver.exe"));
+ChromeDriver driver = new ChromeDriver(options);
 
 
 
