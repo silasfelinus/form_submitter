@@ -27,17 +27,9 @@ with open('formData.csv') as csvfile:
     request = row[0]
     department = row[1]
 
-#For Testing
-print("Attn: " + department)
-print(intro + "\n")
-print(request + "\n")
-print(polite_sendoff + "\n")
-print(company)
-print(email)
-print(phone)
-print(address)
-print(city)
-print(zip)
+#Stitch together request
+final_request = "Attn: " + department: + "\n" + intro + "\n" + request + "\n" + polite_sendoff
+
 
 
 #populate webform
