@@ -14,7 +14,8 @@ sys.path.append("./plugins")
 sys.path.append("./chromedriver")
 
 #Load Web Driver
-url="https://humboldtgov.nextrequest.com/requests/new"
+#url="https://humboldtgov.nextrequest.com/requests/new"
+url="https://fakeform.cafepurr.com/"
 chrome_options = Options()
 chrome_options.add_argument("--headless")
 chrome_options.add_argument("--disable-gpu")
@@ -24,7 +25,8 @@ print(driver)
 print('Loading driver from ' + url)
 driver.get(url)
 print("Driver " + url + " loaded!")
-print(driver.find_element(by=By.CLASS_NAME, value='ql-snow'))  #request
+#print(driver.find_element(by=By.CLASS_NAME, value='ql-snow'))  #request -real form
+print(driver.find_element(by=By.ID, value='ql-snow'))    #request - fakeform
 print(driver.find_element(by=By.ID, value='NrSelect-2'))    #department
 print(driver.find_element(by=By.ID, value='nr_form_input-3'))         #email
 print(driver.find_element(by=By.ID, value='nr_form_input-4'))          #name
